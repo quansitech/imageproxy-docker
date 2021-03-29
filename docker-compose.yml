@@ -1,0 +1,18 @@
+version: '3.5'
+
+networks:
+  backend:
+    driver: bridge
+
+services:
+    imageproxy:
+      build: 
+        context: .
+      container_name: imageproxy
+      command: -cache memory:200:4h -cache /tmp/imageproxy -addr "0.0.0.0:8080"                                                              
+      volumes:                                                                          
+        - D:\imageproxy\cache:/tmp/imageproxy
+      ports:
+        - "8080"
+      networks:        
+        - backend
